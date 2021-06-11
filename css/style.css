@@ -3,9 +3,20 @@ body{
 	color: #fff;
 	font-family: 'Roboto', sans-serif;
 }
+.img{
+	max-width: 100%;
+}
 .container{
-	max-width: 1140px;
+	/*max-width: 1140px;*/
+	width: 90%; /*при адаптиве не прилепают к границу*/
 	margin: auto; /*по гориз по центру*/
+}
+.venom{
+	position:absolute; /*остальные элементы не влияют на него и мы можем перемещать его*/
+	top: 0;
+	right: 0;
+	max-width: 728px; 
+	width: 50%; /*при адаптиве уменьшается картин*/
 }
 .header{
 	display: flex;
@@ -34,15 +45,18 @@ body{
 	display: block; /*по вертикали ставим*/
 	font-size: 24px;
 	line-height: 28px;
-	margin-bottom: 38px;
+	margin-bottom: 2%; /*резиновое растояние между датой и текстом*/
 	color: rgba(255, 255, 255, 0.8);
 }
 .film-description{
-	margin-top: 40px;
+	margin-top: 3%;
 	max-width: 423px;
 	font-size: 16px;
 	line-height: 140%;
 	color: rgba(255, 255, 255, 0.8);
+}
+.film-logo{
+	width: 70%; /*при адаптиве становится резиновым*/
 }
 .button{
 	padding: 15px 30px;
@@ -68,15 +82,12 @@ body{
 	color: #fff;
 }
 .button-group{
-	margin-top: 70px;
+	margin-top: 5%; /*резиновое растояние между тестом и кнопкой*/
 }
-.venom{
-	position:absolute; /*остальные элементы не влияют на него и мы можем перемещать его*/
-	top: 0;
-	right: 0;
-}
+
 .blood{
-	background: url('../img/blood.png') no-repeat top right, #14131a url('../img/bacground2.jpg') no-repeat center center / 100%;
+	background: url('../img/blood.png') no-repeat top right / 70%, 
+	#14131a url('../img/bacground2.jpg') no-repeat center center / 100%;
 }
 .primary-bg{
 	background: #14131a url('../img/bacground2.jpg') no-repeat center center / 100%;
@@ -156,3 +167,127 @@ body{
 	margin: 0;
 	margin-bottom: 20px;
 }
+.menu-button{
+	display: none;
+}
+.menu-close{
+	display: none;
+}
+
+@media (max-width: 1024px) {
+	.content{
+		flex-direction: column; /*2я колонка опускается вниз под 1ую*/
+		padding-bottom: 5%;
+	}
+	.col{
+		margin-bottom: 5%; /*отступ между коллнками*/
+	}
+	.header{
+		margin-bottom: 4%;
+	}
+	.film{
+		margin-top: 20%;
+	}
+}
+@media (max-width: 768px) {
+	.blood{
+		background: #14131A; /*фон без крови*/
+	}
+	.venom{
+		top: 10%; /*спусакется вниз карт*/
+	}
+}
+@media (max-width: 576px) {
+	.venom{
+		top: 20%;
+		width: 30%;
+	}
+	.nav-menu{
+		position: fixed;
+		left: 0;
+		top: 0;
+		z-index: 9; /*чтобы меню полностью все перкрыло*/
+		width: 100%;
+		height: 100%;
+		background-color: #fff;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column; /*меню выстраивается по вертикали*/
+		transform: translateX(100%); /*Унесли с экрана*/
+		transition: transform 0.2s; /*плавность в свойство tarnsform*/
+	}
+	.nav-menu-item{
+		margin-bottom: 2%;
+		margin-top: 2%;
+		margin-right: 0;
+	}
+	.nav-menu-link{
+		color: #14131A;
+	}
+	.nav{
+		margin-left: auto; /*бургер с лево стороны*/
+	}
+	.menu-close{
+		position: fixed;
+		opacity: 0; /*чтобы кнопка уходила вместе с меню*/
+		right: 25px;
+		top: 65px;
+		display: flex;
+		align-items: center;
+		z-index: 10; /*кнопка больше чем меню*/
+		border: none;
+		background-color: #fff;
+		cursor: pointer;
+		transform: translateX(300%); /*Унесли с экрана*/
+		transition: transform 0.2s; /*плавность в свойство tarnsform*/
+		transition-delay: 0.3s; /*появляется чуть позже transitiona*/
+	}
+	.is-active{ /*никуда не выезжает*/
+		transform: translateX(0%);
+		opacity: 1; /*чтобы кнопка уходила вместе с меню*/
+	}
+	.menu-close-text{
+		margin-right: 10px;
+	}
+	.menu-button{ /*появляется только на экранах меньше 576*/
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 10px;
+		border: none;
+		background-color: #14131A;
+		cursor: pointer;
+		color: #fff;
+	}
+	.menu-button-text{
+		margin-right: 10px;
+	}
+	.button-group{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+	}
+	.film-text{
+		text-align: center; /*по середине*/
+	}
+	.poster-wrapper{
+		flex-direction: column;
+	}
+	.poster{
+		margin-bottom: 4%;
+	}
+	.content .trailer{
+		max-width: 350px;
+		width: 100%;
+	}
+	.poster{
+		margin-right: 0;
+		width: 100%;
+		max-width: 350px;
+	}
+	.column-2{
+		column-count: 1; /*текст в одну строку*/
+	}
+} 
